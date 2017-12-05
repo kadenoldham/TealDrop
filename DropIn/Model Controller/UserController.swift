@@ -104,16 +104,6 @@ class UserController {
         }
     }
     
-    func createCollection(name: String) {
-        
-        let collectionName = name
-        
-       
-        
-        
-        return
-        
-    }
     
 }
 
