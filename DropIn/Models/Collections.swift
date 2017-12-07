@@ -11,10 +11,10 @@ import CloudKit
 
 class Collection {
     static let collectionTypeKey = "Collection"
-    static let collectionNameKey = "collectionName"
-    static let ownerKey = "owner"
-    static let ownerRefrenceKey = "ckRefrence"
-    static let recordIDKey = "recordID"
+    fileprivate let collectionNameKey = "collectionName"
+    fileprivate let ownerKey = "owner"
+    fileprivate let ownerRefrenceKey = "ckRefrence"
+    fileprivate let recordIDKey = "recordID"
     
     var collectionName: String?
     var owner: User?
@@ -31,15 +31,15 @@ class Collection {
     
     init?(ckRecord: CKRecord) {
         
-        guard let collectionName = ckRecord[Collection.collectionNameKey] as? String,
-            let owner = ckRecord[Collection.ownerKey] as? User,
-            let ownerReference = ckRecord[Collection.ownerRefrenceKey] as? CKReference else { return }
+        guard let collectionName = ckRecord[collectionNameKey] as? String,
+            let owner = ckRecord[ownerKey] as? User,
+            let ownerReference = ckRecord[ownerRefrenceKey] as? CKReference else { return }
         
         self.collectionName = collectionName
         self.owner = owner
         self.ownerRefrence = ownerReference
         self.ckrecordID = ckRecord.recordID
-    
+        
     }
     
 }
@@ -51,11 +51,10 @@ extension CKRecord {
         
         self.init(recordType: Collection.collectionTypeKey, recordID: recordID)
         
-        self.setValue(collection.collectionName, forKey: Collection.collectionNameKey)
-        self.setValue(collection.owner, forKey: Collection.ownerKey)
-        self.setValue(collection.ownerRefrence, forKey: Collection.ownerRefrenceKey)
-        
-        
+        self.setValue(collection.collectionName, forKey: collection.collectionNameKey)
+        guard let owner = collection.owner,
+            let ownerRecordId = owner.cloudKitRecordID else { return }
+        self[collection.ownerRefrenceKey] = CKReference(recordID: ownerRecordId, action: .deleteSelf)
     }
 }
 

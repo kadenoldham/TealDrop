@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionTableViewController: UITableViewController {
     
-    private var currentUser: User?
+    var currentUser = UserController.shared.currentUser
     
     @IBAction func addCollectionButtonTapped(_ sender: Any) {
         
@@ -26,28 +26,23 @@ class CollectionTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { (_) in
-            
             guard let title = collectionNameTextField?.text, title != "",
-                let user = self.currentUser else { return }
+                let _ = self.currentUser else { print("\(self.currentUser?.username ?? "no current user")"); return }
 
-            CollectionController.shared.createCollection(name: title, owner: user, completion: { (success) in
+            CollectionController.shared.createCollection(name: title, completion: { (success) in
                 if !success {
                     print("unable to create a collection")
                 } else {
                     print("successfully created a collection")
                 }
-                
             })
             self.tableView.reloadData()
-            
         }
         
         alert.addAction(cancelAction)
         alert.addAction(saveAction)
         self.present(alert, animated: true, completion: nil)
-        
     }
-    
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
@@ -84,10 +79,11 @@ class CollectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collectionsCell", for: indexPath)
         
-        guard let user = currentUser else { return UITableViewCell()}
-        let collection = user.collections[indexPath.row]
+        guard let user = currentUser,
+            let collection = user.collections[indexPath.row] else { return UITableViewCell()}
         
-        cell.textLabel?.text = collection?.collectionName
+        
+        cell.textLabel?.text = collection.collectionName
         
         return cell
     }

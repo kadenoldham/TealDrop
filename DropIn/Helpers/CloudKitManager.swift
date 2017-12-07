@@ -371,6 +371,15 @@ class CloudKitManager {
             }
         })
     }
+    
+    func fetchCollectionsWith(type: String, completion: @escaping ((_ records: [CKRecord]?, _ error: Error?) -> Void)) {
+        
+        var predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: type, predicate: predicate)
+        
+        publicDatabase.perform(query, inZoneWith: nil, completionHandler: completion)
+        
+    }
 }
 
 
