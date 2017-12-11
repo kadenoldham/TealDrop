@@ -19,6 +19,8 @@ class UserController {
 
     let currentUserWasSetNotification = Notification.Name("currentUserWasSet")
     
+    var users: [User] = [] 
+    
     var currentUser: User? {
         didSet {
             DispatchQueue.main.async {
@@ -103,6 +105,8 @@ class UserController {
             completion(true)
         }
     }
+    
+    
     
     
 }

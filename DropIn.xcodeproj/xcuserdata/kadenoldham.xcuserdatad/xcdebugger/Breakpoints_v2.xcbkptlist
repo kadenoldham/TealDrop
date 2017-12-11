@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Helpers/CloudKitManager.swift"
-            timestampString = "534207997.393565"
+            timestampString = "534467462.744201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Helpers/CloudKitManager.swift"
-            timestampString = "534207997.39363"
+            timestampString = "534467462.744372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Models/User.swift"
-            timestampString = "534358646.006209"
+            timestampString = "534467462.744885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -246,11 +246,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Models/User.swift"
-            timestampString = "534358646.006275"
+            timestampString = "534467462.745132"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -265,13 +265,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "534359094.560498"
+            filePath = "DropIn/Model Controller/CollectionController.swift"
+            timestampString = "534722957.525101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "fetchNewCollectionRecords(ofType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Model Controller/CollectionController.swift"
+            timestampString = "534722957.525188"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "fetchNewCollectionRecords(ofType:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -282,76 +298,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "534359094.561633"
+            timestampString = "534722957.525246"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "addCollectionButtonTapped(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (__ObjC.UIAlertAction) -&gt; () in DropIn.CollectionTableViewController.addCollectionButtonTapped(Any) -&gt; ()"
-                  moduleName = "DropIn"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/CollectionTableViewController.swift"
-                  timestampString = "534210077.71406"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "1824">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #2 (__ObjC.UIAlertAction) -&gt; () in DropIn.CollectionTableViewController.addCollectionButtonTapped(Any) -&gt; ()"
-                  moduleName = "DropIn"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/CollectionTableViewController.swift"
-                  timestampString = "534210077.717379"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "534359094.562611"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "addCollectionButtonTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "534359094.562668"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

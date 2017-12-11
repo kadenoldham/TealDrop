@@ -21,14 +21,14 @@ class User {
     var username: String
     var email: String
     
-    var collections: [Collection?]
+    var collections: [Collection]
 
     
     let appleUserRef: CKReference
     
     var cloudKitRecordID: CKRecordID?
     
-    init(username: String, email: String, appleUserRef: CKReference, collectionNames: [Collection?] = []) {
+    init(username: String, email: String, appleUserRef: CKReference, collectionNames: [Collection] = []) {
         
         self.username = username
         self.email = email

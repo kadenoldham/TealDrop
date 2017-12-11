@@ -55,6 +55,12 @@ class CollectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
+        CollectionController.shared.fetchNewCollectionRecords(ofType: "Collection") {
+            DispatchQueue.main.async {
+                print("fetching collection records")
+                self.tableView.reloadData()
+            }
+        }
         
     }
     
@@ -62,6 +68,7 @@ class CollectionTableViewController: UITableViewController {
         
         DispatchQueue.main.async {
             self.navigationTitle.title = UserController.shared.currentUser?.username ?? "No user name"
+//            CollectionController.shared.loadCollectionsFromiCloud()
             print(UserController.shared.currentUser?.username ?? "No username")
             self.tableView.reloadData()
         }
@@ -72,15 +79,14 @@ class CollectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.currentUser?.collections.count ?? 0
+        return UserController.shared.currentUser?.collections.count ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collectionsCell", for: indexPath)
         
-        guard let user = currentUser,
-            let collection = user.collections[indexPath.row] else { return UITableViewCell()}
+        guard let collection = currentUser?.collections[indexPath.row] else { return UITableViewCell()}
         
         
         cell.textLabel?.text = collection.collectionName
