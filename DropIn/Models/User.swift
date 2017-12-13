@@ -22,7 +22,7 @@ class User {
     var email: String
     
     var collections: [Collection]
-
+    
     
     let appleUserRef: CKReference
     
@@ -41,7 +41,7 @@ class User {
     init?(cloudKitRecord: CKRecord) {
         
         guard let username = cloudKitRecord[User.usernameKey] as? String,
-        let email = cloudKitRecord[User.emailKey] as? String,
+            let email = cloudKitRecord[User.emailKey] as? String,
             let appleUserRef = cloudKitRecord[User.appleUserRefKey] as? CKReference else { return nil }
         
         self.username = username
@@ -55,7 +55,7 @@ class User {
             self.collections = []
         }
     }
-
+    
 }
 
 extension CKRecord {
@@ -70,6 +70,14 @@ extension CKRecord {
         self.setValue(user.email, forKey: User.emailKey)
         self.setValue(user.collections, forKey: User.collectionNameKey)
         self.setValue(user.appleUserRef, forKey: User.appleUserRefKey)
+    }
+    
+}
+
+extension User: Equatable {
+    static func ==(lhs: User, rhs: User) -> Bool {
+        return lhs.username == rhs.username && lhs.email == rhs.email && lhs.appleUserRef
+            == rhs.appleUserRef && lhs.cloudKitRecordID == rhs.cloudKitRecordID
     }
     
 }

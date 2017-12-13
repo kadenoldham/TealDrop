@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25021DD61FE097F9006C8199 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25021DD51FE097F9006C8199 /* ImageCollectionViewController.swift */; };
 		2515952B1FD6047300FFC462 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515952A1FD6047300FFC462 /* CollectionTableViewController.swift */; };
 		2515952D1FD709A600FFC462 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2515952C1FD709A600FFC462 /* CloudKit.framework */; };
 		252AA5191FD5CCCA0070386C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252AA5181FD5CCCA0070386C /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25021DD51FE097F9006C8199 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 		2515952A1FD6047300FFC462 /* CollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewController.swift; sourceTree = "<group>"; };
 		2515952C1FD709A600FFC462 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		252AA5151FD5CCCA0070386C /* DropIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 			children = (
 				252AA53A1FD5EE950070386C /* SignUpViewController.swift */,
 				2515952A1FD6047300FFC462 /* CollectionTableViewController.swift */,
+				25021DD51FE097F9006C8199 /* ImageCollectionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				252AA53B1FD5EE950070386C /* SignUpViewController.swift in Sources */,
 				252AA5351FD5EE7A0070386C /* UserController.swift in Sources */,
 				2559EE8B1FD754AE0072F60D /* CollectionController.swift in Sources */,
+				25021DD61FE097F9006C8199 /* ImageCollectionViewController.swift in Sources */,
 				25FEADD01FD72A2C007253FB /* Collections.swift in Sources */,
 				252AA5331FD5EE720070386C /* CloudKitManager.swift in Sources */,
 			);

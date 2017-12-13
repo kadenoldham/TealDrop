@@ -31,11 +31,14 @@ class CollectionController {
         }
     }
     
+    
+    
+    
     let cloudKitManager: CloudKitManager
     
     init() {
         self.cloudKitManager = CloudKitManager()
-
+        
     }
     
     // - MARK - CRUD
@@ -59,6 +62,22 @@ class CollectionController {
                 completion(true)
             }
         }
+    }
+    
+    func removeCollection(collection: Collection) {
+        guard let index = collections.index(of: collection) else { return }
+        self.collections.remove(at: index)
+    }
+    
+    func deleteCollection(collection: Collection, completion: @escaping(() -> Void) = {}) {
+        guard let record = collection.ckrecordID else { return }
+        
+        self.cloudKitManager.deleteRecordWithID(record) { (_, error) in
+            if let error = error { print("error deleting collection \(error.localizedDescription)"); return}
+        }
+        guard let index = UserController.shared.currentUser?.collections.index(of: collection) else { return }
+        UserController.shared.currentUser?.collections.remove(at: index)
+
     }
     
     func fetchNewCollectionRecords(ofType type: String, completion: @escaping (() -> Void) = {}) {
