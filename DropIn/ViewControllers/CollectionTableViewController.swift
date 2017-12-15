@@ -114,10 +114,14 @@ class CollectionTableViewController: UITableViewController {
      
     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "toImageCollection"{
             
-            let toImageCollection = segue.destination as? ImageCollectionViewController
+            if let collection = segue.destination as? ImageCollectionViewController, let indexPath = tableView.indexPathForSelectedRow {
+                
+                collection.collection = currentUser?.collections[indexPath.row]
+                
+                
+            }
             
         }
         

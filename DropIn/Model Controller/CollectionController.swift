@@ -13,7 +13,7 @@ import UIKit
 extension CollectionController {
     
     static let collectionChangeNotification = Notification.Name("collectionChangeNotification")
-    
+    static let collectionImagesChangeNotificaton = Notification.Name("CollectionImagesWereAdded")
     
 }
 
@@ -31,8 +31,12 @@ class CollectionController {
         }
     }
     
-    
-    
+    var collectionImages = [Collection]() {
+        didSet {
+            let nc = NotificationCenter.default
+            nc.post(name: CollectionController.collectionImagesChangeNotificaton, object: self)
+        }
+    }
     
     let cloudKitManager: CloudKitManager
     
@@ -77,8 +81,10 @@ class CollectionController {
         }
         guard let index = UserController.shared.currentUser?.collections.index(of: collection) else { return }
         UserController.shared.currentUser?.collections.remove(at: index)
-
+        
     }
+    
+    
     
     func fetchNewCollectionRecords(ofType type: String, completion: @escaping (() -> Void) = {}) {
         
@@ -115,29 +121,58 @@ class CollectionController {
                         let users = UserController.shared.users
                         
                         guard let ownerID = collection.ownerRefrence?.recordID else {print("Can not find ownerRecord id"); return }
-                        guard let collectionOwner = users.filter({$0.cloudKitRecordID == ownerID}).first else { break }
                         
+                        guard let collectionOwner = users.filter({$0.cloudKitRecordID == ownerID}).first else { break }
                         collection.owner = collectionOwner
                     }
+                    
+                    
                     self.collections = collections
+                    
                     completion()
+                    
                 default:
                     print("can not fetch Collections")
                     return
                     
                 }
                 
-                
                 for collection in self.collections {
                     UserController.shared.currentUser?.collections = self.collections
+                    for image in collection.photoArray {
+                        self.collection?.photoArray.append(image)
+                    }
+                    
                 }
             })
-            
+        }
+    }
+
+    
+    func uploadPhotos(to collection: Collection, images: [UIImage], completion: @escaping (_ success: Bool) -> Void) {
+        
+        guard let curentUser = UserController.shared.currentUser else { return }
+        guard let userRecordID = curentUser.cloudKitRecordID else { return }
+        let ownerRefrence = CKReference(recordID: userRecordID, action: .none)
+        
+        collection.ownerRefrence = ownerRefrence
+
+        
+        let curentCollectionRecord = CKRecord(collection)
+        self.cloudKitManager.modifyRecords([curentCollectionRecord], perRecordCompletion: nil) { (_, error) in
+            if let error = error {
+                print("error modifying Records \(error.localizedDescription)")
+                completion(false)
+                return
+            } else {
+                print("successfully modifyed record")
+                
+            }
+            completion(true)
         }
         
-        
-        
     }
+    
 }
 
 

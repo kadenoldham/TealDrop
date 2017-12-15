@@ -18,6 +18,7 @@
 		252AA5351FD5EE7A0070386C /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252AA5341FD5EE7A0070386C /* UserController.swift */; };
 		252AA5371FD5EE840070386C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252AA5361FD5EE840070386C /* Main.storyboard */; };
 		252AA53B1FD5EE950070386C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252AA53A1FD5EE950070386C /* SignUpViewController.swift */; };
+		2554C83E1FE1D31900E10598 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2554C83D1FE1D31900E10598 /* ImageCollectionViewCell.swift */; };
 		2559EE8B1FD754AE0072F60D /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559EE8A1FD754AE0072F60D /* CollectionController.swift */; };
 		25FEADD01FD72A2C007253FB /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FEADCF1FD72A2C007253FB /* Collections.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		252AA5341FD5EE7A0070386C /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		252AA5361FD5EE840070386C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		252AA53A1FD5EE950070386C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2554C83D1FE1D31900E10598 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2559EE8A1FD754AE0072F60D /* CollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
 		25FEADCF1FD72A2C007253FB /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 				252AA53A1FD5EE950070386C /* SignUpViewController.swift */,
 				2515952A1FD6047300FFC462 /* CollectionTableViewController.swift */,
 				25021DD51FE097F9006C8199 /* ImageCollectionViewController.swift */,
+				2554C83D1FE1D31900E10598 /* ImageCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				252AA53B1FD5EE950070386C /* SignUpViewController.swift in Sources */,
 				252AA5351FD5EE7A0070386C /* UserController.swift in Sources */,
 				2559EE8B1FD754AE0072F60D /* CollectionController.swift in Sources */,
+				2554C83E1FE1D31900E10598 /* ImageCollectionViewCell.swift in Sources */,
 				25021DD61FE097F9006C8199 /* ImageCollectionViewController.swift in Sources */,
 				25FEADD01FD72A2C007253FB /* Collections.swift in Sources */,
 				252AA5331FD5EE720070386C /* CloudKitManager.swift in Sources */,

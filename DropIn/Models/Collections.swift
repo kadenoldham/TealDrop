@@ -1,4 +1,4 @@
-//
+ //
 //  Collections.swift
 //  DropIn
 //
@@ -17,11 +17,16 @@ class Collection {
     fileprivate let ownerRefrenceKey = "ckRefrence"
     fileprivate let recordIDKey = "recordID"
     fileprivate let photoDataKey = "photoData"
+    static let photoArrayKey = "photoArray"
     
     var collectionName: String?
     var owner: User?
     var ownerRefrence: CKReference?
     var ckrecordID: CKRecordID?
+    
+    var photoArray: [UIImage?] = []
+    /// This is the acutal collection photos
+    var collectionPhoto: Data?
     
     let photoData: Data?
     var photo: UIImage? {
@@ -29,14 +34,19 @@ class Collection {
         return UIImage(data: photoData)
     }
     
-    init(collectionName: String?, owner: User?, photoData: Data? = Data(), ownerRefrence: CKReference?) {
+    init(collectionName: String?, owner: User?, photoData: Data? = Data(), ownerRefrence: CKReference?, photoArray: [UIImage?] = []) {
         
         self.photoData = photoData
         self.collectionName = collectionName
         self.owner = owner
         self.ownerRefrence = ownerRefrence
+        self.photoArray = photoArray
         
     }
+    
+//    convenience init(collectionPhoto: Data?) {
+//        self.collectionPhoto = collectionPhoto
+//    }
     
     init?(ckRecord: CKRecord) {
         
@@ -48,14 +58,40 @@ class Collection {
         self.ownerRefrence = ownerReference
         self.ckrecordID = ckRecord.recordID
         
-        guard let photoAsset = ckRecord[photoDataKey] as? CKAsset else {
+        if let photoAsset = ckRecord[photoDataKey] as? CKAsset {
+            self.photoData = try? Data(contentsOf: photoAsset.fileURL)
+        } else {
             self.photoData = nil
             return
+        }
+        var photoArray: [UIImage] = []
+        
+        if let photoAssetArray = ckRecord[Collection.photoArrayKey] as? [CKAsset] {
+            
+            for asset in photoAssetArray {
+                
+                guard let data = try? Data(contentsOf: asset.fileURL),
+                    let image = UIImage(data: data) else { continue }
+                photoArray.append(image)
+            }
             
         }
+        self.photoArray = photoArray
+    }
+    
+    func writePhotoDataToTemporaryDirectory(photo: UIImage) -> URL? {
         
-        self.photoData = try? Data(contentsOf: photoAsset.fileURL)
+        let photoData = UIImagePNGRepresentation(photo)
         
+        // Must write to temporary directory to be able to pass image file path url to CKAsset
+        
+        let temporaryDirectory = NSTemporaryDirectory()
+        let temporaryDirectoryURL = URL(fileURLWithPath: temporaryDirectory)
+        let fileURL = temporaryDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+        
+        try? photoData?.write(to: fileURL, options: [.atomic])
+        
+        return fileURL
     }
     
     fileprivate var temporaryPhotoURL: URL {
@@ -84,6 +120,18 @@ extension CKRecord {
         guard let owner = collection.owner,
             let ownerRecordId = owner.cloudKitRecordID else { return }
         self[collection.ownerRefrenceKey] = CKReference(recordID: ownerRecordId, action: .deleteSelf)
+        
+        var assets: [CKAsset] = []
+        
+        for photo in collection.photoArray {
+            guard let photo = photo, let url = collection.writePhotoDataToTemporaryDirectory(photo: photo) else { continue }
+            
+            let asset = CKAsset(fileURL: url)
+            
+            assets.append(asset)
+        }
+        self[Collection.photoArrayKey] = assets as CKRecordValue
+        
         self[collection.photoDataKey] = CKAsset(fileURL: collection.temporaryPhotoURL)
     }
 }

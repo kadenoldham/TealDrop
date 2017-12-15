@@ -179,19 +179,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NCX-zK-Rcz">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="142" height="117"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="70M-aY-WP9">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="70M-aY-WP9" customClass="ImageCollectionViewCell" customModule="DropIn" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uLr-vq-0xv">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uLr-vq-0xv" secondAttribute="bottom" id="2b3-hm-AQI"/>
+                                    <constraint firstItem="uLr-vq-0xv" firstAttribute="top" secondItem="70M-aY-WP9" secondAttribute="top" id="jgN-xb-olV"/>
+                                    <constraint firstAttribute="trailing" secondItem="uLr-vq-0xv" secondAttribute="trailing" id="xzi-6b-EqA"/>
+                                    <constraint firstItem="uLr-vq-0xv" firstAttribute="leading" secondItem="70M-aY-WP9" secondAttribute="leading" id="zzH-TM-YDj"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="100"/>
+                                <connections>
+                                    <outlet property="imageViewCell" destination="uLr-vq-0xv" id="Kfe-Wk-MED"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -200,12 +215,20 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Title" id="66I-cu-dEo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S0F-9E-hz3"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S0F-9E-hz3">
+                            <connections>
+                                <action selector="addPhotoButtonTapepd:" destination="J5x-uG-wpr" id="qj7-Jz-v9Z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageCollectionView" destination="rCl-nc-r1L" id="FhI-qo-14n"/>
+                        <outlet property="imageCollectionViewTitle" destination="66I-cu-dEo" id="D1e-ik-tch"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5W-dj-2yW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5290" y="108"/>
+            <point key="canvasLocation" x="5263" y="108"/>
         </scene>
         <!--Home-->
         <scene sceneID="Fn5-Ey-MhD">
