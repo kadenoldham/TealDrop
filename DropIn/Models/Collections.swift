@@ -17,14 +17,16 @@ class Collection {
     fileprivate let ownerRefrenceKey = "ckRefrence"
     fileprivate let recordIDKey = "recordID"
     fileprivate let photoDataKey = "photoData"
+    static let textKey = "text"
     static let photoArrayKey = "photoArray"
     
+    var text: String?
     var collectionName: String?
     var owner: User?
     var ownerRefrence: CKReference?
     var ckrecordID: CKRecordID?
     
-    var photoArray: [UIImage?] = []
+    var photoArray: [UIImage] = []
     /// This is the acutal collection photos
     var collectionPhoto: Data?
     
@@ -34,13 +36,14 @@ class Collection {
         return UIImage(data: photoData)
     }
     
-    init(collectionName: String?, owner: User?, photoData: Data? = Data(), ownerRefrence: CKReference?, photoArray: [UIImage?] = []) {
+    init(collectionName: String?, text: String = "", owner: User?, photoData: Data? = Data(), ownerRefrence: CKReference?, photoArray: [UIImage] = []) {
         
         self.photoData = photoData
         self.collectionName = collectionName
         self.owner = owner
         self.ownerRefrence = ownerRefrence
         self.photoArray = photoArray
+        
         
     }
     
@@ -53,16 +56,23 @@ class Collection {
         guard let collectionName = ckRecord[collectionNameKey] as? String,
             let ownerReference = ckRecord[ownerRefrenceKey] as? CKReference else { return nil }
         
+        
+        
         self.collectionName = collectionName
         self.owner = nil
         self.ownerRefrence = ownerReference
         self.ckrecordID = ckRecord.recordID
         
+        if let text = ckRecord[Collection.textKey] as? String {
+            self.text = text
+        } else {
+            self.text = ""
+        }
+        
         if let photoAsset = ckRecord[photoDataKey] as? CKAsset {
             self.photoData = try? Data(contentsOf: photoAsset.fileURL)
         } else {
             self.photoData = nil
-            return
         }
         var photoArray: [UIImage] = []
         
@@ -116,6 +126,7 @@ extension CKRecord {
         
         self.init(recordType: Collection.collectionTypeKey, recordID: recordID)
         
+        self.setValue(collection.text, forKey: Collection.textKey)
         self.setValue(collection.collectionName, forKey: collection.collectionNameKey)
         guard let owner = collection.owner,
             let ownerRecordId = owner.cloudKitRecordID else { return }
@@ -124,7 +135,7 @@ extension CKRecord {
         var assets: [CKAsset] = []
         
         for photo in collection.photoArray {
-            guard let photo = photo, let url = collection.writePhotoDataToTemporaryDirectory(photo: photo) else { continue }
+            guard let url = collection.writePhotoDataToTemporaryDirectory(photo: photo) else { continue }
             
             let asset = CKAsset(fileURL: url)
             
@@ -141,6 +152,7 @@ extension Collection: Equatable {
         return lhs.collectionName == rhs.collectionName && lhs.ownerRefrence == rhs.ownerRefrence && lhs.photoData == rhs.photoData && lhs.ckrecordID == rhs.ckrecordID && lhs.owner == rhs.owner
     }
 }
+ 
 
 
 // Fetch the current user from CK

@@ -15,16 +15,22 @@ protocol ImageCollectionViewControllerDelegate: class {
     
 }
 
-class ImageCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ImageCollectionViewController: ShiftableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
     
     @IBOutlet weak var imageCollectionViewTitle: UINavigationItem!
     
-    @IBOutlet var imageCollectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
+    
+    @IBOutlet weak var textView: UITextView!
+    
+    var tapGestureRecognizer: UITapGestureRecognizer?
     
     @IBAction func addPhotoButtonTapepd(_ sender: Any) {
         
         let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
         let alert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .actionSheet)
         
@@ -55,11 +61,118 @@ class ImageCollectionViewController: UICollectionViewController, UIImagePickerCo
     var image: UIImage?
     var collection: Collection?
     weak var delegate: ImageCollectionViewControllerDelegate?
+    var isFullScreen = false
+    var tappedCell: ImageCollectionViewCell?
+    var darkBackgroundView: UIView!
+    var originalContentMode = UIViewContentMode.scaleAspectFit
+    
+    var originalFrame = CGRect.zero
+    
+    func expandImageViewIn(cell: ImageCollectionViewCell) {
+        
+        guard let imageView = cell.imageViewCell else { return }
+        
+        if !isFullScreen {
+            
+            self.tappedCell = cell
+            
+            originalFrame = self.view.convert(imageView.frame, from: imageView.superview)
+            originalContentMode = imageView.contentMode
+            
+            let expandingImageView = UIImageView(image: imageView.image)
+            expandingImageView.contentMode = .scaleAspectFit
+            
+            
+            expandingImageView.frame = originalFrame
+            expandingImageView.isUserInteractionEnabled = true
+            expandingImageView.clipsToBounds = true
+            
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+                self.view.addSubview(expandingImageView)
+                cell.imageViewCell.image = UIImage()
+                
+                expandingImageView.frame = self.view.bounds
+                
+                
+                
+            }, completion: { (_) in
+                
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissFullscreenImageView(sender:)))
+                expandingImageView.addGestureRecognizer(tap)
+                tap.delegate = self
+                self.tapGestureRecognizer = tap
+                
+                guard let image = expandingImageView.image else { return }
+                
+                let width = self.view.frame.width
+                
+                let newImageViewheight = (width * ((image.size.height) / (image.size.width)))
+                
+                expandingImageView.frame.size.height = newImageViewheight
+                expandingImageView.center = self.view.center
+                
+                
+                self.isFullScreen = true
+            })
+        }
+    }
+    
+    @objc func dismissFullscreenImageView(sender: UITapGestureRecognizer) {
+        guard let expandingImageView = sender.view as? UIImageView else { return }
+        
+        expandingImageView.contentMode = self.originalContentMode
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseInOut, animations: {
+            
+            sender.view?.frame = self.originalFrame
+            
+            self.view.layoutIfNeeded()
+            
+        }, completion: { (_) in
+            sender.view?.removeFromSuperview()
+            
+            self.isFullScreen = false
+            
+            guard let cell = self.tappedCell else { return }
+            cell.imageViewCell.image = expandingImageView.image
+        })
+    }
+    
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell else { return }
+        expandImageViewIn(cell: cell)
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Enter notes here" {
+            textView.text = ""
+            
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard let text = textView.text else { return }
+        guard let collection = collection else { return }
+        CollectionController.shared.saveText(to: collection, text: text) { (collection) in
+            
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        if textView.text == "" {
+            textView.text = "Enter notes here"
+        }
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        textView.text = collection?.text
+        textView.delegate = self
+        
         checkPermission()
         self.fetchCollectionImages()
         self.imageCollectionViewTitle.title = collection?.collectionName
@@ -82,6 +195,17 @@ class ImageCollectionViewController: UICollectionViewController, UIImagePickerCo
                 }
             })
         }
+    }
+    
+    
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == tapGestureRecognizer && otherGestureRecognizer == keyboardDismissTapGestureRecognizer {
+            return true
+        } else {
+            return false
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,15 +244,14 @@ class ImageCollectionViewController: UICollectionViewController, UIImagePickerCo
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
-        if let pickedimage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
+        if let pickedImage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
             //            var collectionImages = CollectionController.shared.collection?.photoArray
-            
+           
             guard let collection = collection else { return }
+           collection.photoArray.append(pickedImage)
             
             //            collection.photoArray = [pickedimage]///Will store three selected images in your array
-            collection.photoArray.append(pickedimage)
-            
-            CollectionController.shared.uploadPhotos(to: collection, images: collection.photoArray as! [UIImage], completion: { (_) in
+            CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
                 }
@@ -161,17 +284,31 @@ class ImageCollectionViewController: UICollectionViewController, UIImagePickerCo
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         guard let collection = collection else { print("returning 0 cells");return 0 }
         return collection.photoArray.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell, let collection = collection else { print("else Statement hit"); return UICollectionViewCell() }
         
         
         let collectionImage = collection.photoArray[indexPath.row]
+        
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.borderWidth = 1.0
+        
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = true
+        
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        
         
         cell.imageViewCell.image = collectionImage
         
@@ -182,8 +319,6 @@ class ImageCollectionViewController: UICollectionViewController, UIImagePickerCo
     // MARK: UICollectionViewDelegate
     
 }
-
-
 
 
 

@@ -11,4 +11,8 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageViewCell: UIImageView!
+    
+    func updateWith(image: UIImage) {
+        self.imageViewCell.image = image
+    }
 }

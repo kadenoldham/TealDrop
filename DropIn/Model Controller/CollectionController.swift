@@ -61,6 +61,9 @@ class CollectionController {
                 completion(false)
                 return
             }
+            
+            collection.ckrecordID = record.recordID
+            
             DispatchQueue.main.async {
                 print("creating a collection")
                 completion(true)
@@ -84,6 +87,12 @@ class CollectionController {
         
     }
     
+    func deleteImage(image: UIImage, completion: @escaping (() -> Void) = {}) {
+        guard let collection = collection,
+            let index = collection.photoArray.index(of: image) else { completion(); return }
+        self.collection?.photoArray.remove(at: index)
+        
+    }
     
     
     func fetchNewCollectionRecords(ofType type: String, completion: @escaping (() -> Void) = {}) {
@@ -147,9 +156,40 @@ class CollectionController {
             })
         }
     }
-
     
-    func uploadPhotos(to collection: Collection, images: [UIImage], completion: @escaping (_ success: Bool) -> Void) {
+    
+    func saveText(to collection: Collection, text: String, completion: @escaping (Collection) -> Void) {
+        
+        collection.text = text
+        guard let recordID = collection.ckrecordID else { return }
+        
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            if let error = error { NSLog("error fetching the recordID \(error.localizedDescription)")}
+            
+            guard let record = record else { return }
+            
+            record.setValue(text, forKey: Collection.textKey)
+            record.changedKeys()
+            
+            let modifyOperation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+            modifyOperation.savePolicy = .changedKeys
+            modifyOperation.modifyRecordsCompletionBlock = { (records, _, error) in
+                
+                if let error = error { NSLog("Error modifying thr record: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let record = records?.first else { return }
+                guard let collection = Collection(ckRecord: record) else { return }
+                
+                completion(collection)
+            }
+            CKContainer.default().publicCloudDatabase.add(modifyOperation)
+        }
+        
+    }
+    
+    func uploadRecords(to collection: Collection, images: [UIImage], completion: @escaping (_ success: Bool) -> Void) {
         
         guard let curentUser = UserController.shared.currentUser else { return }
         guard let userRecordID = curentUser.cloudKitRecordID else { return }
@@ -172,6 +212,8 @@ class CollectionController {
         }
         
     }
+    
+    
     
 }
 
