@@ -206,7 +206,7 @@ class CollectionController {
                 return
             } else {
                 print("successfully modifyed record")
-                
+               
             }
             completion(true)
         }

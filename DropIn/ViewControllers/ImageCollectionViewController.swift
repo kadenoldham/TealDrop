@@ -248,7 +248,8 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
             //            var collectionImages = CollectionController.shared.collection?.photoArray
            
             guard let collection = collection else { return }
-           collection.photoArray.append(pickedImage)
+            collection.photoArray.append(pickedImage)
+      
             
             //            collection.photoArray = [pickedimage]///Will store three selected images in your array
             CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
