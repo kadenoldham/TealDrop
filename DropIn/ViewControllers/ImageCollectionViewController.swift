@@ -61,6 +61,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     var image: UIImage?
     var collection: Collection?
     weak var delegate: ImageCollectionViewControllerDelegate?
+    weak var photoDelegate: PhotoSelectViewControllerDelegate?
     var isFullScreen = false
     var tappedCell: ImageCollectionViewCell?
     var darkBackgroundView: UIView!
@@ -115,6 +116,24 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
                 
                 self.isFullScreen = true
             })
+        }
+    }
+    
+    func handleLongPress(_ gestureReconizer: UILongPressGestureRecognizer) {
+        if gestureReconizer.state != UIGestureRecognizerState.ended {
+            return
+        }
+        let p = gestureReconizer.location(in: collectionView)
+        let indexPath = collectionView.indexPathForItem(at: p)
+        
+        if let index = indexPath {
+            _ = collectionView.cellForItem(at: index)
+            // do stuff with your cell, for example print the indexPath
+            guard let image = image else { return }
+            CollectionController.shared.deleteImage(image: image)
+            print(index.row)
+        } else {
+            print("Could not find index path")
         }
     }
     
@@ -247,10 +266,17 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         if let pickedImage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
             //            var collectionImages = CollectionController.shared.collection?.photoArray
            
-            guard let collection = collection else { return }
-            collection.photoArray.append(pickedImage)
-      
+            guard let collection = collection else { print("Cannot add picked IMage"); return
+            }
+            photoDelegate?.photoSelectViewControllerSelected(pickedImage)
             
+            let pickedImage = [pickedImage]
+            
+            for image in pickedImage {
+                collection.photoArray.append(image)
+            }
+           
+
             //            collection.photoArray = [pickedimage]///Will store three selected images in your array
             CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
                 DispatchQueue.main.async {
@@ -320,6 +346,13 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     // MARK: UICollectionViewDelegate
     
 }
+
+
+protocol PhotoSelectViewControllerDelegate: class {
+    
+    func photoSelectViewControllerSelected(_ image: UIImage)
+}
+
 
 
 

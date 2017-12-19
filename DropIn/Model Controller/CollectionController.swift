@@ -88,9 +88,29 @@ class CollectionController {
     }
     
     func deleteImage(image: UIImage, completion: @escaping (() -> Void) = {}) {
+        // TODO - Test 
+        guard let curentUser = UserController.shared.currentUser else { return }
+        guard let userRecordID = curentUser.cloudKitRecordID else { return }
+        let ownerRefrence = CKReference(recordID: userRecordID, action: .none)
         guard let collection = collection,
             let index = collection.photoArray.index(of: image) else { completion(); return }
         self.collection?.photoArray.remove(at: index)
+        
+        collection.ownerRefrence = ownerRefrence
+        
+        
+        let curentCollectionRecord = CKRecord(collection)
+        
+        cloudKitManager.modifyRecords([curentCollectionRecord], perRecordCompletion: nil) { (_, error) in
+            if let error = error { print("error \(error.localizedDescription)")
+                completion()
+                return
+            }
+            guard let image = self.collection?.photoArray else { print("no photo array \(String(describing: error?.localizedDescription))")
+                return
+            }
+            collection.photoArray = image
+        }
         
     }
     
