@@ -36,16 +36,14 @@ class UserController {
             
             let appleUserRef = CKReference(recordID: appleUserRecordID, action: .deleteSelf)
             
-            guard let collectionNames = UserController.shared.currentUser?.collections else  { return }
             
-            let user = User(username: username, email: email, appleUserRef: appleUserRef, collectionNames: collectionNames)
-            
+            let user = User(username: username, email: email, appleUserRef: appleUserRef)
             
             let userRecord = CKRecord(user: user)
             
-            CKContainer.default().publicCloudDatabase.save(userRecord) { (record, error) in
+            CKContainer.default().privateCloudDatabase.save(userRecord) { (record, error) in
                 
-                if let error = error { print(error.localizedDescription) }
+                if let error = error { print(error.localizedDescription); print(error) }
                 
                 guard let record = record, let currentUser = User(cloudKitRecord: record) else { completion(false); return }
                 

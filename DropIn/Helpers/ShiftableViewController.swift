@@ -40,12 +40,18 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
             self.textFieldBeingEdited = nil
             self.textViewBeingEdited = nil
         }
+        
+        guard keyboardDismissTapGestureRecognizer.isEnabled else { return }
+        
+        keyboardDismissTapGestureRecognizer.isEnabled = false
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        keyboardDismissTapGestureRecognizer.isEnabled = true
         textFieldBeingEdited = textField
     }
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        keyboardDismissTapGestureRecognizer.isEnabled = true
         textViewBeingEdited = textView
         return true
     }
@@ -110,10 +116,12 @@ class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextView
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(stopEditingTextInput))
         tapGestureRecognizer.numberOfTapsRequired = 1
         
+        tapGestureRecognizer.isEnabled = false
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
         
         keyboardDismissTapGestureRecognizer = tapGestureRecognizer
+        
         
     }
 }

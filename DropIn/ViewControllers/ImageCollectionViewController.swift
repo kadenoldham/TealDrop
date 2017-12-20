@@ -15,8 +15,10 @@ protocol ImageCollectionViewControllerDelegate: class {
     
 }
 
-class ImageCollectionViewController: ShiftableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ImageCollectionViewController: ShiftableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCollectionViewCellDelegate {
     
+    
+    var longPressRecognizer: UILongPressGestureRecognizer?
     
     
     @IBOutlet weak var imageCollectionViewTitle: UINavigationItem!
@@ -30,6 +32,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     @IBAction func addPhotoButtonTapepd(_ sender: Any) {
         
         let imagePicker = UIImagePickerController()
+        
         imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
         let alert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .actionSheet)
@@ -60,8 +63,8 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     //MARK: - properties
     var image: UIImage?
     var collection: Collection?
-    weak var delegate: ImageCollectionViewControllerDelegate?
-    weak var photoDelegate: PhotoSelectViewControllerDelegate?
+    
+    
     var isFullScreen = false
     var tappedCell: ImageCollectionViewCell?
     var darkBackgroundView: UIView!
@@ -119,21 +122,23 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         }
     }
     
-    func handleLongPress(_ gestureReconizer: UILongPressGestureRecognizer) {
-        if gestureReconizer.state != UIGestureRecognizerState.ended {
-            return
-        }
-        let p = gestureReconizer.location(in: collectionView)
-        let indexPath = collectionView.indexPathForItem(at: p)
+    // MARK - Delegate
+    func didSelectImage(_ sender: ImageCollectionViewCell) {
         
-        if let index = indexPath {
-            _ = collectionView.cellForItem(at: index)
-            // do stuff with your cell, for example print the indexPath
-            guard let image = image else { return }
-            CollectionController.shared.deleteImage(image: image)
-            print(index.row)
-        } else {
-            print("Could not find index path")
+    }
+    
+    @objc func handleLongPress(_ gestureReconizer: UILongPressGestureRecognizer) {
+        
+        if gestureReconizer.state == .began {
+            
+            
+            let p = gestureReconizer.location(in: self.collectionView)
+            let indexPath = self.collectionView.indexPathForItem(at: p)
+            
+            if let index = indexPath,
+                let cell = self.collectionView.cellForItem(at: index) as? ImageCollectionViewCell {
+                cell.showDeleteButton()
+            }
         }
     }
     
@@ -158,19 +163,21 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         })
     }
     
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell else { return }
         expandImageViewIn(cell: cell)
         
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         if textView.text == "Enter notes here" {
             textView.text = ""
             
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
+        
         guard let text = textView.text else { return }
         guard let collection = collection else { return }
         CollectionController.shared.saveText(to: collection, text: text) { (collection) in
@@ -178,7 +185,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         }
     }
     
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -195,8 +202,12 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         
         checkPermission()
         self.fetchCollectionImages()
+        
         self.imageCollectionViewTitle.title = collection?.collectionName
         let nc = NotificationCenter.default
+        
+        // TODO: Add observer for the same notification (in the deleteImage function in the CollectionController) and have the selector reload the collectionView.
+        
         nc.addObserver(self, selector: #selector(reloadData), name: CollectionController.collectionImagesChangeNotificaton, object: nil)
         
         
@@ -218,13 +229,14 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     }
     
     
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer == tapGestureRecognizer && otherGestureRecognizer == keyboardDismissTapGestureRecognizer {
-            return true
-        } else {
-            return false
-        }
+    func setupLongPressRecognizer(cell: ImageCollectionViewCell) {
+        // Make the recognizer
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector (handleLongPress(_:)))
+        longPress.minimumPressDuration = 0.5
+        longPress.numberOfTouchesRequired = 1
+        
+        cell.addGestureRecognizer(longPress)
         
     }
     
@@ -234,7 +246,9 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     }
     
     @objc func reloadData() {
-        self.collectionView?.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
     }
     
     // MARK: - Delegates
@@ -261,32 +275,32 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         }
     }
     
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        
-        if let pickedImage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
-            //            var collectionImages = CollectionController.shared.collection?.photoArray
-           
-            guard let collection = collection else { print("Cannot add picked IMage"); return
-            }
-            photoDelegate?.photoSelectViewControllerSelected(pickedImage)
-            
-            let pickedImage = [pickedImage]
-            
-            for image in pickedImage {
-                collection.photoArray.append(image)
-            }
-           
 
-            //            collection.photoArray = [pickedimage]///Will store three selected images in your array
-            CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
-                DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
+    
+    
+        @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            picker.dismiss(animated: true, completion: nil)
+    
+            if let pickedImage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
+                //            var collectionImages = CollectionController.shared.collection?.photoArray
+    
+                guard let collection = collection else { print("Cannot add picked IMage"); return
                 }
-            })
+    //            photoDelegate?.photoSelectViewControllerSelected(pickedImage)
+    
+
+                collection.photoArray.append(pickedImage)
+    
+    
+                //            collection.photoArray = [pickedimage]///Will store three selected images in your array
+                CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                })
+            }
+    
         }
-        
-    }
     
     func checkPermission() {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
@@ -312,7 +326,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         }
     }
     
-
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -338,10 +352,11 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        setupLongPressRecognizer(cell: cell)
         
-        
-        cell.imageViewCell.image = collectionImage
-        
+        cell.image = collectionImage
+        cell.collection = collection
+        cell.delegate = self
         
         return cell
     }
@@ -350,11 +365,6 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     
 }
 
-
-protocol PhotoSelectViewControllerDelegate: class {
-    
-    func photoSelectViewControllerSelected(_ image: UIImage)
-}
 
 
 

@@ -168,16 +168,30 @@
                                                 <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GId-2q-UKq">
                                                     <rect key="frame" x="0.0" y="0.0" width="146" height="146"/>
                                                 </imageView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TC-1l-do0">
+                                                    <rect key="frame" x="116" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="3My-vQ-V0P"/>
+                                                        <constraint firstAttribute="height" constant="30" id="hc9-Kv-bfH"/>
+                                                    </constraints>
+                                                    <state key="normal" image="deleteImage1.0"/>
+                                                    <connections>
+                                                        <action selector="deleteSelectedImage:" destination="JEU-wg-UYp" eventType="touchUpInside" id="qz5-nE-aQi"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="GId-2q-UKq" firstAttribute="top" secondItem="JEU-wg-UYp" secondAttribute="top" id="LzD-kZ-nkK"/>
                                             <constraint firstAttribute="trailing" secondItem="GId-2q-UKq" secondAttribute="trailing" id="Mqb-IK-HQ7"/>
+                                            <constraint firstItem="9TC-1l-do0" firstAttribute="top" secondItem="JEU-wg-UYp" secondAttribute="top" id="QPa-mO-YTe"/>
                                             <constraint firstAttribute="bottom" secondItem="GId-2q-UKq" secondAttribute="bottom" id="T3t-RQ-YF3"/>
                                             <constraint firstItem="GId-2q-UKq" firstAttribute="leading" secondItem="JEU-wg-UYp" secondAttribute="leading" id="Y0Q-JJ-V52"/>
+                                            <constraint firstAttribute="trailing" secondItem="9TC-1l-do0" secondAttribute="trailing" id="lQD-9g-6bi"/>
                                         </constraints>
                                         <size key="customSize" width="146" height="146"/>
                                         <connections>
+                                            <outlet property="deleteButton" destination="9TC-1l-do0" id="Gcw-bl-o9Z"/>
                                             <outlet property="imageViewCell" destination="GId-2q-UKq" id="FWn-eY-NtW"/>
                                         </connections>
                                     </collectionViewCell>
@@ -185,6 +199,7 @@
                             </collectionView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bie-3M-Wzr">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="jVz-fO-0VM"/>
                                 </constraints>
@@ -255,6 +270,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="deleteImage1.0" width="52" height="52"/>
         <image name="homeNotHighlighted" width="25" height="24"/>
     </resources>
 </document>

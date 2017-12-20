@@ -6,27 +6,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "535484347.825869"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "535484347.825949"
+            timestampString = "535504340.882976"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -35,14 +19,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Bool) -&gt; () in DropIn.CollectionTableViewController.viewDidLoad() -&gt; ()"
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/CollectionTableViewController.swift"
-                  timestampString = "535482139.464491"
+                  timestampString = "535487031.237383"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -50,14 +34,14 @@
                   offsetFromSymbolStart = "28">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Bool) -&gt; () in DropIn.CollectionTableViewController.viewDidLoad() -&gt; ()"
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/CollectionTableViewController.swift"
-                  timestampString = "535482139.466215"
+                  timestampString = "535487031.238709"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "60"
@@ -70,16 +54,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "535484347.826013"
+            filePath = "DropIn/ViewControllers/ImageCollectionViewController.swift"
+            timestampString = "535504340.883057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,14 +73,254 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DropIn/Model Controller/CollectionController.swift"
-            timestampString = "535484347.826076"
+            filePath = "DropIn/ViewControllers/SignUpViewController.swift"
+            timestampString = "535504340.88383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "fetchNewCollectionRecords(ofType:completion:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "logInButtonTapped(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/ViewControllers/SignUpViewController.swift"
+            timestampString = "535504340.884264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "logInButtonTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DropIn.signUpViewController.logInButtonTapped(Any) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
+                  timestampString = "535504341.068351"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "1424">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Bool) -&gt; () in DropIn.signUpViewController.logInButtonTapped(Any) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
+                  timestampString = "535504341.069986"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/ViewControllers/SignUpViewController.swift"
+            timestampString = "535504340.884657"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "logInButtonTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DropIn.signUpViewController.logInButtonTapped(Any) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
+                  timestampString = "535504341.073916"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "1177">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in DropIn.signUpViewController.logInButtonTapped(Any) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
+                  timestampString = "535504341.075497"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Model Controller/UserController.swift"
+            timestampString = "535504340.884958"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "createUserWith(username:email:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Model Controller/UserController.swift"
+            timestampString = "535504340.885034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "createUserWith(username:email:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.CKRecordID&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DropIn.UserController.createUserWith(username: Swift.String, email: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Model%20Controller/UserController.swift"
+                  timestampString = "535504341.082647"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "468">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.CKRecord&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.CKRecordID&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DropIn.UserController.createUserWith(username: Swift.String, email: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Model%20Controller/UserController.swift"
+                  timestampString = "535504341.084314"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "33">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Model Controller/UserController.swift"
+            timestampString = "535504340.885102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "createUserWith(username:email:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Models/User.swift"
+            timestampString = "535504340.885172"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "init(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Models/User.swift"
+            timestampString = "535504340.885227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "init(user:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in DropIn):__ObjC.CKRecord.init(user: DropIn.User) -&gt; __ObjC.CKRecord"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Models/User.swift"
+                  timestampString = "535504341.094404"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; __ObjC.CKRecordID in (extension in DropIn):__ObjC.CKRecord.init(user: DropIn.User) -&gt; __ObjC.CKRecord"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Models/User.swift"
+                  timestampString = "535504341.095921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

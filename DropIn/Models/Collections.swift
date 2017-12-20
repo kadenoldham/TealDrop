@@ -99,7 +99,10 @@ class Collection {
         let temporaryDirectoryURL = URL(fileURLWithPath: temporaryDirectory)
         let fileURL = temporaryDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
         
-        try? photoData?.write(to: fileURL, options: [.atomic])
+        
+        DispatchQueue.dataWritingQueue.async {
+            try? photoData?.write(to: fileURL, options: [.atomic])
+        }
         
         return fileURL
     }
@@ -162,7 +165,13 @@ extension Collection: Equatable {
 // Fetch all of the users that are a part of the collections you just fetched
 
 
+ extension DispatchQueue {
+    static var dataWritingQueue: DispatchQueue = {
+        let dataWritingQueue = DispatchQueue(label: "dataWritingQueue")
 
+        return dataWritingQueue
+    }()
+ }
 
 
 

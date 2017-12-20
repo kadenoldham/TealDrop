@@ -52,7 +52,7 @@ class CollectionController {
             let userRecordID = currentUser.cloudKitRecordID else { return }
         let ownerReference = CKReference(recordID: userRecordID, action: .none)
         let collection = Collection(collectionName: name, owner: currentUser, ownerRefrence: ownerReference)
-        currentUser.collections.append(collection)
+        currentUser.collections?.append(collection)
         let record = CKRecord(collection)
         cloudKitManager.saveRecord(record) { (_, error) in
             
@@ -82,19 +82,18 @@ class CollectionController {
         self.cloudKitManager.deleteRecordWithID(record) { (_, error) in
             if let error = error { print("error deleting collection \(error.localizedDescription)"); return}
         }
-        guard let index = UserController.shared.currentUser?.collections.index(of: collection) else { return }
-        UserController.shared.currentUser?.collections.remove(at: index)
+        guard let index = UserController.shared.currentUser?.collections?.index(of: collection) else { return }
+        UserController.shared.currentUser?.collections?.remove(at: index)
         
     }
     
-    func deleteImage(image: UIImage, completion: @escaping (() -> Void) = {}) {
+    func deleteImage(image: UIImage, fromCollection collection: Collection, completion: @escaping (() -> Void) = {}) {
         // TODO - Test 
         guard let curentUser = UserController.shared.currentUser else { return }
         guard let userRecordID = curentUser.cloudKitRecordID else { return }
         let ownerRefrence = CKReference(recordID: userRecordID, action: .none)
-        guard let collection = collection,
-            let index = collection.photoArray.index(of: image) else { completion(); return }
-        self.collection?.photoArray.remove(at: index)
+        guard let index = collection.photoArray.index(of: image) else { print("no image"); completion(); return }
+        collection.photoArray.remove(at: index)
         
         collection.ownerRefrence = ownerRefrence
         
@@ -102,14 +101,13 @@ class CollectionController {
         let curentCollectionRecord = CKRecord(collection)
         
         cloudKitManager.modifyRecords([curentCollectionRecord], perRecordCompletion: nil) { (_, error) in
-            if let error = error { print("error \(error.localizedDescription)")
+            if let error = error { print("error \(error.localizedDescription)") }
+                
+                // TODO: Post notification saying the collection has been updated
+                NotificationCenter.default.post(name: CollectionController.collectionImagesChangeNotificaton, object: self)
+
                 completion()
                 return
-            }
-            guard let image = self.collection?.photoArray else { print("no photo array \(String(describing: error?.localizedDescription))")
-                return
-            }
-            collection.photoArray = image
         }
         
     }
@@ -184,7 +182,7 @@ class CollectionController {
         collection.text = text
         guard let recordID = collection.ckrecordID else { return }
         
-        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+        CKContainer.default().privateCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
             if let error = error { NSLog("error fetching the recordID \(error.localizedDescription)")}
             
             guard let record = record else { return }
@@ -205,7 +203,7 @@ class CollectionController {
                 
                 completion(collection)
             }
-            CKContainer.default().publicCloudDatabase.add(modifyOperation)
+            CKContainer.default().privateCloudDatabase.add(modifyOperation)
         }
         
     }

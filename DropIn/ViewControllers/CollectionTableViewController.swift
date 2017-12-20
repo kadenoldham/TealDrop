@@ -81,14 +81,14 @@ class CollectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return UserController.shared.currentUser?.collections.count ?? 0
+        return UserController.shared.currentUser?.collections?.count ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collectionsCell", for: indexPath)
         
-        guard let collection = currentUser?.collections[indexPath.row] else { return UITableViewCell()}
+        guard let collection = currentUser?.collections?[indexPath.row] else { return UITableViewCell()}
         
         
         cell.textLabel?.text = collection.collectionName
@@ -101,9 +101,9 @@ class CollectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            guard let collection = UserController.shared.currentUser?.collections[indexPath.row] else { return }
+            guard let collection = UserController.shared.currentUser?.collections?[indexPath.row] else { return }
             CollectionController.shared.deleteCollection(collection: collection, completion: {
-                print("\(String(describing: collection.owner?.collections.count))")
+                print("\(String(describing: collection.owner?.collections?.count))")
             })
             
             self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -120,7 +120,7 @@ class CollectionTableViewController: UITableViewController {
             
             if let collection = segue.destination as? ImageCollectionViewController, let indexPath = tableView.indexPathForSelectedRow {
                 
-                collection.collection = currentUser?.collections[indexPath.row]
+                collection.collection = currentUser?.collections?[indexPath.row]
                 
                 
             }

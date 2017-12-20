@@ -21,7 +21,7 @@ class User {
     var username: String
     var email: String
     
-    var collections: [Collection]
+    var collections: [Collection]? = []
     
     
     let appleUserRef: CKReference
@@ -68,8 +68,11 @@ extension CKRecord {
         
         self.setValue(user.username, forKey: User.usernameKey)
         self.setValue(user.email, forKey: User.emailKey)
-        self.setValue(user.collections, forKey: User.collectionNameKey)
         self.setValue(user.appleUserRef, forKey: User.appleUserRefKey)
+        
+        if let collections = user.collections, !collections.isEmpty {
+            self.setValue(collections, forKey: User.collectionNameKey)
+        }
     }
     
 }

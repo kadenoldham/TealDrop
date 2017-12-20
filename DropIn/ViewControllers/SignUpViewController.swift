@@ -40,7 +40,6 @@ class signUpViewController: UIViewController {
     
     @IBAction func logInButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text,
-            
             let email = emailTextField.text else { return }
         if UserController.shared.currentUser == nil {
             
