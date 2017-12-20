@@ -115,7 +115,7 @@ class CollectionController {
     }
     
     
-    func fetchNewCollectionRecords(ofType type: String, completion: @escaping (() -> Void) = {}) {
+    func fetchNewCollectionRecords(ofType type: String, completion: @escaping ((Bool) -> Void) = {_ in }) {
         
         var predicate: NSPredicate?
         
@@ -131,10 +131,10 @@ class CollectionController {
                 
                 if let error = error {
                     print(error.localizedDescription)
-                    completion(); return
+                    completion(false); return
                 }
                 
-                guard let records = records else { completion(); return}
+                guard let records = records else { completion(false); return}
                 
                 switch type {
                     
@@ -142,7 +142,7 @@ class CollectionController {
                     let users = records.flatMap { User(cloudKitRecord: $0)}
                     UserController.shared.users = users
                     
-                    completion()
+                    completion(true)
                 case Collection.collectionTypeKey:
                     let collections = records.flatMap { Collection(ckRecord: $0)}
                     self.collections = collections
@@ -158,7 +158,7 @@ class CollectionController {
                     
                     self.collections = collections
                     
-                    completion()
+                    completion(true)
                     
                 default:
                     print("can not fetch Collections")
@@ -173,6 +173,7 @@ class CollectionController {
                     }
                     
                 }
+                completion(true)
             })
         }
     }

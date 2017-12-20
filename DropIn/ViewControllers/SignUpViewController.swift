@@ -10,6 +10,9 @@ import UIKit
 
 class signUpViewController: UIViewController {
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
 
@@ -25,6 +28,12 @@ class signUpViewController: UIViewController {
     
     @objc func segueToTableView() {
         DispatchQueue.main.async {
+            self.usernameTextField.isHidden = true
+            self.emailTextField.isHidden = true
+            self.userNameLabel.isHidden = true
+            self.emailLabel.isHidden = true
+            self.loginButton.isHidden = true
+            
             self.performSegue(withIdentifier: "toCollectionTV", sender: self)
         }
     }

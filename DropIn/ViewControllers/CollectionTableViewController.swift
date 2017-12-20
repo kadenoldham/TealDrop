@@ -54,9 +54,10 @@ class CollectionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpViews()
-        CollectionController.shared.fetchNewCollectionRecords(ofType: "Collection") {
+        
+        CollectionController.shared.fetchNewCollectionRecords(ofType: "Collection") {_ in 
             DispatchQueue.main.async {
+                self.setUpViews()
                 print("fetching collection records")
                 self.tableView.reloadData()
             }
@@ -76,6 +77,7 @@ class CollectionTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

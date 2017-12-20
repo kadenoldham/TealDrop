@@ -69,7 +69,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="D3N-Yd-vea"/>
                     <connections>
+                        <outlet property="emailLabel" destination="SF2-Tj-od9" id="a7N-ev-pdZ"/>
                         <outlet property="emailTextField" destination="KY3-4f-63G" id="KxE-wX-4c1"/>
+                        <outlet property="loginButton" destination="Xm9-wo-TAD" id="ixo-BK-2dn"/>
+                        <outlet property="userNameLabel" destination="41n-Dk-gRc" id="ATm-i0-rWs"/>
                         <outlet property="usernameTextField" destination="d5U-RO-cvg" id="2pH-Qf-7WG"/>
                         <segue destination="MOx-n7-QGn" kind="show" identifier="toCollectionTV" id="jfK-Oc-ffF"/>
                     </connections>
@@ -86,6 +89,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="0.44017551370000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="collectionsCell" textLabel="wCm-6R-7Jy" rowHeight="75" style="IBUITableViewCellStyleDefault" id="bx9-XT-N8R">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
@@ -97,7 +101,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wCm-6R-7Jy">
                                             <rect key="frame" x="16" y="0.0" width="343" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
@@ -105,7 +109,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.26767171143772128" green="0.37707561598650308" blue="0.66666668653488159" alpha="0.62425085616438358" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="bgB-EG-TKe" kind="show" identifier="toImageCollection" id="7J8-n4-EYu"/>
                                 </connections>
@@ -181,7 +185,6 @@
                             </collectionView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bie-3M-Wzr">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
-                                <color key="backgroundColor" red="0.26767171140000001" green="0.377075616" blue="0.66666668650000005" alpha="0.62425085619999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="jVz-fO-0VM"/>
                                 </constraints>
@@ -189,15 +192,27 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" calendarEvent="YES" flightNumber="YES"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-gb-AbD">
+                                <rect key="frame" x="0.0" y="467" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.50937896573604058" green="0.50937896573604058" blue="0.50937896573604058" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.80000000000000004" id="die-d9-F42"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MUG-gb-AbD" firstAttribute="leading" secondItem="HAv-wM-mB1" secondAttribute="leading" id="Cqk-tn-oSS"/>
                             <constraint firstItem="bie-3M-Wzr" firstAttribute="leading" secondItem="r4F-QT-VRe" secondAttribute="leading" id="Nx0-cH-co9"/>
+                            <constraint firstItem="MUG-gb-AbD" firstAttribute="width" secondItem="r4F-QT-VRe" secondAttribute="width" id="UYV-d8-VQ8"/>
+                            <constraint firstItem="MUG-gb-AbD" firstAttribute="trailing" secondItem="HAv-wM-mB1" secondAttribute="trailing" id="V2C-7P-vyP"/>
                             <constraint firstItem="PcM-6Q-I1n" firstAttribute="top" secondItem="r4F-QT-VRe" secondAttribute="top" id="WwJ-ze-24Z"/>
                             <constraint firstItem="PcM-6Q-I1n" firstAttribute="trailing" secondItem="HAv-wM-mB1" secondAttribute="trailing" id="ZCG-Y3-9aM"/>
+                            <constraint firstItem="MUG-gb-AbD" firstAttribute="top" secondItem="PcM-6Q-I1n" secondAttribute="bottom" id="bwr-ds-e3z"/>
                             <constraint firstItem="bie-3M-Wzr" firstAttribute="top" secondItem="PcM-6Q-I1n" secondAttribute="bottom" id="ktH-cv-3oT"/>
                             <constraint firstAttribute="trailing" secondItem="bie-3M-Wzr" secondAttribute="trailing" id="sms-9V-gI0"/>
                             <constraint firstItem="PcM-6Q-I1n" firstAttribute="leading" secondItem="HAv-wM-mB1" secondAttribute="leading" id="tBh-9I-ZMl"/>
+                            <constraint firstItem="MUG-gb-AbD" firstAttribute="centerX" secondItem="r4F-QT-VRe" secondAttribute="centerX" id="tLx-1p-eXx"/>
                             <constraint firstItem="bie-3M-Wzr" firstAttribute="bottom" secondItem="HAv-wM-mB1" secondAttribute="bottom" id="ubt-l4-19A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HAv-wM-mB1"/>
@@ -210,14 +225,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="PcM-6Q-I1n" id="d3V-or-ETn"/>
+                        <outlet property="collectionView" destination="PcM-6Q-I1n" id="0HM-CH-8Bo"/>
                         <outlet property="imageCollectionViewTitle" destination="dlW-AO-Flb" id="bqd-kH-sag"/>
                         <outlet property="textView" destination="bie-3M-Wzr" id="ftt-e2-PWH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jdv-kM-Hhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5209" y="107"/>
+            <point key="canvasLocation" x="5208.8000000000002" y="106.59670164917542"/>
         </scene>
         <!--Home-->
         <scene sceneID="Fn5-Ey-MhD">

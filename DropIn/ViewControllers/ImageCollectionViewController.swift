@@ -178,6 +178,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         }
     }
     
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -310,6 +311,8 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
             print("User has denied the permission.")
         }
     }
+    
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
