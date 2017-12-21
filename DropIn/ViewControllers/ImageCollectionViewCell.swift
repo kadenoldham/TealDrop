@@ -10,44 +10,41 @@ import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
-    
+    // MARK: - Outlets
     @IBOutlet weak var deleteButton: UIButton!
-    
     @IBOutlet weak var imageViewCell: UIImageView!
     
+    // MARK: - Properties
+    let feedback = UIImpactFeedbackGenerator()
+    weak var collection: Collection?
+    weak var delegate: ImageCollectionViewCellDelegate?
     var image: UIImage? {
         didSet {
             updateViews()
         }
     }
-    weak var delegate: ImageCollectionViewCellDelegate?
-    
     
     override func prepareForReuse() {
         deleteButton.isHidden = true
     }
     
-    weak var collection: Collection?
-    
     func updateViews() {
         self.imageViewCell.image = image
     }
-    
-    let feedback = UIImpactFeedbackGenerator()
     
     @IBAction func deleteSelectedImage(_ sender: Any) {
         feedback.impactOccurred()
         guard let image = self.image,
             let collection = self.collection else { return }
-        
+       
         CollectionController.shared.deleteImage(image: image, fromCollection: collection)
     }
     func showDeleteButton() {
-        
         deleteButton.isHidden = false
     }
 }
 
+// MARK: - Protocol
 protocol ImageCollectionViewCellDelegate: class {
     func didSelectImage(_ sender: ImageCollectionViewCell)
 }

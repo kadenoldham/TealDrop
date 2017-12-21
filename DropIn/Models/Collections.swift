@@ -91,7 +91,9 @@ class Collection {
     
     func writePhotoDataToTemporaryDirectory(photo: UIImage) -> URL? {
         
-        let photoData = UIImagePNGRepresentation(photo)
+        
+        let fixedPhoto = photo.fixOrientation()
+        let photoData = UIImagePNGRepresentation(fixedPhoto)
         
         // Must write to temporary directory to be able to pass image file path url to CKAsset
         

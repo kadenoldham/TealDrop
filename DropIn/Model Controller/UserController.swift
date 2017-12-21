@@ -11,16 +11,17 @@ import CloudKit
 
 class UserController {
     
+    //MARK: - singleton
     static let shared = UserController()
     
+    //MARK: - cloudKitManager
     let cloudKitManager: CloudKitManager = {
         return CloudKitManager()
     }()
-
+    
+    //MARK: - Users
     let currentUserWasSetNotification = Notification.Name("currentUserWasSet")
-    
-    var users: [User] = [] 
-    
+    var users: [User] = []
     var currentUser: User? {
         didSet {
             DispatchQueue.main.async {
@@ -28,6 +29,8 @@ class UserController {
             }
         }
     }
+    
+    //MARK: - create
     func createUserWith(username: String, email: String, completion: @escaping (_ success: Bool) -> Void) {
         
         CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
@@ -54,14 +57,12 @@ class UserController {
         }
     }
     
+    //MARK: - fetch
     func fetchCurrentUser(completion: @escaping (_ success: Bool) -> Void = { _ in }) {
-        
-        // Fetch default Apple 'Users' recordID
         
         CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
             
             if let error = error { print(error.localizedDescription) }
-            
             guard let appleUserRecordID = appleUserRecordID else { completion(false); return }
             
             // Create a CKReference with the Apple 'Users' recordID so that we can fetch OUR custom User record
@@ -85,7 +86,7 @@ class UserController {
             })
         }
     }
-    
+    //MARK: - save
     func updateCurrentUser(username: String, email: String, completion: @escaping (_ success: Bool) -> Void) {
         guard let currentUser = currentUser else { return }
         
