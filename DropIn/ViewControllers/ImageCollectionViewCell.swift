@@ -33,7 +33,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.imageViewCell.image = image
     }
     
+    let feedback = UIImpactFeedbackGenerator()
+    
     @IBAction func deleteSelectedImage(_ sender: Any) {
+        feedback.impactOccurred()
         guard let image = self.image,
             let collection = self.collection else { return }
         

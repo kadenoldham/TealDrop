@@ -17,14 +17,10 @@ protocol ImageCollectionViewControllerDelegate: class {
 
 class ImageCollectionViewController: ShiftableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCollectionViewCellDelegate {
     
-    
     var longPressRecognizer: UILongPressGestureRecognizer?
     
-    
     @IBOutlet weak var imageCollectionViewTitle: UINavigationItem!
-    
     @IBOutlet var collectionView: UICollectionView!
-    
     @IBOutlet weak var textView: UITextView!
     
     var tapGestureRecognizer: UITapGestureRecognizer?
@@ -64,15 +60,23 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     var image: UIImage?
     var collection: Collection?
     
-    
     var isFullScreen = false
     var tappedCell: ImageCollectionViewCell?
     var darkBackgroundView: UIView!
     var originalContentMode = UIViewContentMode.scaleAspectFit
-    
     var originalFrame = CGRect.zero
     
+    @discardableResult func flipImage(image: UIImage) -> UIImage {
+        guard let cgImage = image.cgImage else {
+            return image
+        }
+        let flippedImage = UIImage(cgImage: cgImage,
+                                   scale: image.scale,
+                                   orientation: .leftMirrored)
+        return flippedImage
+    }
     
+
     func expandImageViewIn(cell: ImageCollectionViewCell) {
         
         guard let imageView = cell.imageViewCell else { return }
@@ -191,6 +195,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         if textView.text == "" {
@@ -203,6 +208,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         
         checkPermission()
         self.fetchCollectionImages()
+        
         
         self.imageCollectionViewTitle.title = collection?.collectionName
         let nc = NotificationCenter.default
@@ -257,12 +263,12 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     func fetchCollectionImages(_ picker: UIImagePickerController? = nil, didFinishPickingMediaWithInfo info: [String: Any]? = nil) {
         guard let info = info else { return }
         if let pickedimage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
+            var pickedimage = pickedimage
             if self.collection?.owner == nil {
                 // Go fetch the owner using the reference, and attach it to the collection.
                 guard let ownerReference = self.collection?.ownerRefrence else { return }
                 CloudKitManager().fetchRecord(withID: ownerReference.recordID, completion: { (record, error) in
                     guard let record = record else { return }
-                    
                     let user = User(cloudKitRecord: record)
                     
                     self.collection?.owner = user
@@ -272,12 +278,10 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
                         self.collectionView?.reloadData()
                     }
                 })
+                
             }
         }
     }
-    
-
-    
     
         @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
             picker.dismiss(animated: true, completion: nil)
@@ -331,7 +335,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         }
     }
     
-    
+    // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -359,14 +363,15 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
         setupLongPressRecognizer(cell: cell)
         
-        cell.image = collectionImage
+        let image = flipImage(image: collectionImage)
+        cell.image = image
         cell.collection = collection
         cell.delegate = self
+        
         
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
     
 }
 
