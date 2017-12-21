@@ -72,6 +72,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     
     var originalFrame = CGRect.zero
     
+    
     func expandImageViewIn(cell: ImageCollectionViewCell) {
         
         guard let imageView = cell.imageViewCell else { return }
@@ -293,10 +294,14 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     
     
                 //            collection.photoArray = [pickedimage]///Will store three selected images in your array
-                CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
-                    DispatchQueue.main.async {
-                        self.collectionView?.reloadData()
-                    }
+                
+                Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+                    
+                    CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
+                        DispatchQueue.main.async {
+                            self.collectionView?.reloadData()
+                        }
+                    })
                 })
             }
     

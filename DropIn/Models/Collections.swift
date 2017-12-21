@@ -100,9 +100,9 @@ class Collection {
         let fileURL = temporaryDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
         
         
-        DispatchQueue.dataWritingQueue.async {
-            try? photoData?.write(to: fileURL, options: [.atomic])
-        }
+    
+        try? photoData?.write(to: fileURL, options: [.atomic])
+        
         
         return fileURL
     }

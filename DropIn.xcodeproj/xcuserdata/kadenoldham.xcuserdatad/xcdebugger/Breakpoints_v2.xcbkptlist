@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/CollectionTableViewController.swift"
-            timestampString = "535505276.710506"
+            timestampString = "535506137.303717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/ImageCollectionViewController.swift"
-            timestampString = "535505276.710574"
+            timestampString = "535566348.333555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/SignUpViewController.swift"
-            timestampString = "535505276.711008"
+            timestampString = "535506137.304477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "logInButtonTapped(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/SignUpViewController.swift"
-            timestampString = "535505276.711076"
+            timestampString = "535506137.304546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "logInButtonTapped(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -106,7 +106,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
-                  timestampString = "535504341.068351"
+                  timestampString = "535565705.028538"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -121,7 +121,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
-                  timestampString = "535504341.069986"
+                  timestampString = "535565705.032396"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -138,13 +138,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/ViewControllers/SignUpViewController.swift"
-            timestampString = "535505276.711137"
+            timestampString = "535506137.304605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "logInButtonTapped(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -154,7 +154,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
-                  timestampString = "535504341.073916"
+                  timestampString = "535565705.041504"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -169,7 +169,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/SignUpViewController.swift"
-                  timestampString = "535504341.075497"
+                  timestampString = "535565705.045471"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Model Controller/UserController.swift"
-            timestampString = "535505276.711197"
+            timestampString = "535513987.158999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Model Controller/UserController.swift"
-            timestampString = "535505276.711261"
+            timestampString = "535513987.159286"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -218,7 +218,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Model%20Controller/UserController.swift"
-                  timestampString = "535504341.082647"
+                  timestampString = "535565705.064647"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
@@ -233,7 +233,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Model%20Controller/UserController.swift"
-                  timestampString = "535504341.084314"
+                  timestampString = "535565705.066639"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -250,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Model Controller/UserController.swift"
-            timestampString = "535505276.711321"
+            timestampString = "535513987.15952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -266,7 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Models/User.swift"
-            timestampString = "535505276.711387"
+            timestampString = "535566348.33424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DropIn/Models/User.swift"
-            timestampString = "535505276.711485"
+            timestampString = "535566348.334457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -298,7 +298,7 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Models/User.swift"
-                  timestampString = "535504341.094404"
+                  timestampString = "535565705.079607"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -313,12 +313,184 @@
                   moduleName = "DropIn"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Models/User.swift"
-                  timestampString = "535504341.095921"
+                  timestampString = "535565705.081258"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
                   endingLineNumber = "65"
                   offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Model Controller/CollectionController.swift"
+            timestampString = "535565128.457399"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "uploadRecords(to:images:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Model Controller/CollectionController.swift"
+            timestampString = "535565202.555563"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "uploadRecords(to:images:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DropIn.CollectionController.uploadRecords(to: DropIn.Collection, images: Swift.Array&lt;__ObjC.UIImage&gt;, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Model%20Controller/CollectionController.swift"
+                  timestampString = "535565705.088247"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "416">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__ObjC.CKRecord&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DropIn.CollectionController.uploadRecords(to: DropIn.Collection, images: Swift.Array&lt;__ObjC.UIImage&gt;, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Model%20Controller/CollectionController.swift"
+                  timestampString = "535565705.092354"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "222"
+                  endingLineNumber = "222"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/ViewControllers/ImageCollectionViewController.swift"
+            timestampString = "535566348.334551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DropIn.ImageCollectionViewController.imagePickerController(__ObjC.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/ImageCollectionViewController.swift"
+                  timestampString = "535565705.099435"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "297"
+                  endingLineNumber = "297"
+                  offsetFromSymbolStart = "1226">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in DropIn.ImageCollectionViewController.imagePickerController(__ObjC.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/ViewControllers/ImageCollectionViewController.swift"
+                  timestampString = "535565705.103263"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "298"
+                  endingLineNumber = "298"
+                  offsetFromSymbolStart = "25">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DropIn/Models/Collections.swift"
+            timestampString = "535566348.334852"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "writePhotoDataToTemporaryDirectory(photo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DropIn.Collection.writePhotoDataToTemporaryDirectory(photo: __ObjC.UIImage) -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Models/Collections.swift"
+                  timestampString = "535565705.108298"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "586">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in DropIn.Collection.writePhotoDataToTemporaryDirectory(photo: __ObjC.UIImage) -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  moduleName = "DropIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kadenoldham/Desktop/capstone%20projects/DropIn/DropIn/Models/Collections.swift"
+                  timestampString = "535565705.110152"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "37">
                </Location>
             </Locations>
          </BreakpointContent>
