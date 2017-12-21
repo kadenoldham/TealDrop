@@ -257,7 +257,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
     func fetchCollectionImages(_ picker: UIImagePickerController? = nil, didFinishPickingMediaWithInfo info: [String: Any]? = nil) {
         guard let info = info else { return }
         if let pickedimage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
-            var pickedimage = pickedimage
+            let pickedimage = pickedimage
             if self.collection?.owner == nil {
                 // Go fetch the owner using the reference, and attach it to the collection.
                 guard let ownerReference = self.collection?.ownerRefrence else { return }
@@ -278,9 +278,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
             if let pickedImage = (info[UIImagePickerControllerOriginalImage] as? UIImage){
                 guard let collection = collection else { print("Cannot add picked IMage"); return
                 }
-                
                 let image = pickedImage.fixOrientation()
-                
                 collection.photoArray.append(image)
                 Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
                     CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
