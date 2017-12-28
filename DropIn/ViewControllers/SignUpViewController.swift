@@ -11,15 +11,15 @@ import UIKit
 class signUpViewController: UIViewController {
     
     //MARK: - outlets
+    @IBOutlet weak var explanationLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
 
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UserController.shared.fetchCurrentUser()
         NotificationCenter.default.addObserver(self, selector: #selector(segueToTableView), name: UserController.shared.currentUserWasSetNotification, object: nil)
     }
@@ -27,10 +27,9 @@ class signUpViewController: UIViewController {
     //MARK: - segue
     @objc func segueToTableView() {
         DispatchQueue.main.async {
-            self.usernameTextField.isHidden = true
-            self.emailTextField.isHidden = true
             self.userNameLabel.isHidden = true
-            self.emailLabel.isHidden = true
+            self.usernameTextField.isHidden = true
+            self.explanationLabel.text = ""
             self.loginButton.isHidden = true
             self.performSegue(withIdentifier: "toCollectionTV", sender: self)
         }
@@ -38,10 +37,9 @@ class signUpViewController: UIViewController {
     
     //MARK: - action
     @IBAction func logInButtonTapped(_ sender: Any) {
-        guard let username = usernameTextField.text,
-            let email = emailTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
         if UserController.shared.currentUser == nil {
-            UserController.shared.createUserWith(username: username, email: email, completion: { (success) in
+            UserController.shared.createUserWith(username: username, email: "", completion: { (success) in
                 if !success {
                     print("Error creating user")
                 } else {
@@ -49,7 +47,7 @@ class signUpViewController: UIViewController {
                 }
             })
         } else {
-            UserController.shared.updateCurrentUser(username: username, email: email, completion: { (success) in
+            UserController.shared.updateCurrentUser(username: username, email: "", completion: { (success) in
                 if !success {
                     print("Error updating user")
                 } else {
