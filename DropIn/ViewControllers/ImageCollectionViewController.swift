@@ -15,6 +15,12 @@ protocol ImageCollectionViewControllerDelegate: class {
     
 }
 
+protocol UICollectionViewDelegateFlowLayou: class {
+    
+    
+    
+}
+
 class ImageCollectionViewController: ShiftableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCollectionViewCellDelegate {
     
     //MARK: - outlets
@@ -321,6 +327,19 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
         cell.collection = collection
         cell.delegate = self
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        // number of Col.
+        let nbCol = 3
+        
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(nbCol - 1))
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(nbCol))
+        return CGSize(width: size, height: size)
     }
 }
 
