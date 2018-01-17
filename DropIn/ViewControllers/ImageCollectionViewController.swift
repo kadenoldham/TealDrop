@@ -17,8 +17,6 @@ protocol ImageCollectionViewControllerDelegate: class {
 
 protocol UICollectionViewDelegateFlowLayou: class {
     
-    
-    
 }
 
 class ImageCollectionViewController: ShiftableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCollectionViewCellDelegate {
@@ -286,7 +284,7 @@ class ImageCollectionViewController: ShiftableViewController, UICollectionViewDe
                 }
                 let image = pickedImage.fixOrientation()
                 collection.photoArray.append(image)
-                Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false, block: { (_) in
                     CollectionController.shared.uploadRecords(to: collection, images: collection.photoArray, completion: { (_) in
                         DispatchQueue.main.async {
                             self.collectionView?.reloadData()
